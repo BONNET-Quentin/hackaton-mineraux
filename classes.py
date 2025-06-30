@@ -3,18 +3,22 @@ import numpy as np
 # Fichier pour créer les classes
 
 class voxel :
-    def __init__(self,coord,etat,voisins):
+    def __init__(self,coord,etat,voisins,libre):
         self.coord=coord
         self.etat=etat
         self.voisins=voisins
+        self.libre=libre
     
+    def afficher_libre(self):
+        print(self.libre)
+
 def init_mat (h,L,n):
     
     T=np.zeros((h,L), dtype=object) 
     
     for i in range (h):      ##on définit la matrice 
             for j in range (L):
-                v=voxel((i,j),0,[])
+                v=voxel((i,j),0,[],[])
                 T[i,j]=v
             
             
