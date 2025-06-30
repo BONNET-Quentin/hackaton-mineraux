@@ -12,14 +12,15 @@ class voxel :
     def afficher_libre(self):
         print(self.libre)
 
-def init_mat (h,L,n):
+def init_mat (h,L,l,n):
     
-    T=np.zeros((h,L), dtype=object) 
+    T=np.zeros((h,L,l), dtype=object) 
     
     for i in range (h):      ##on définit la matrice 
             for j in range (L):
-                v=voxel((i,j),0,[],[])
-                T[i,j]=v
+                for k in range (l):
+                    v=voxel((i,j,k),0,[],[])
+                    T[i,j,k]=v
             
             
     s=L//2-n//2
@@ -27,33 +28,32 @@ def init_mat (h,L,n):
     
     for i in range (s,s+n):     ##on définit le cristal
         for j in range (f,f+n):
-            T[i,j].etat=1
+            for k in range (l):
+                T[i,j,k].etat=1
     
     for i in range (h) :
         for j in range (L) :
-            l=[]
-            if i+1<h:
-                l.append(T[i+1,j])
-            if j-1>=0:
-                l.append(T[i-1,j])
-            if j+1<L:
-                l.append(T[i,j+1])
+            for k in range (l):
+                liste=[]
+                if i+1<h:
+                    liste.append(T[i+1,j,k])
+                if j-1>=0:
+                    liste.append(T[i-1,j,k])
+                if j+1<L:
+                    liste.append(T[i,j+1,k])
             if i-1>0: 
-                l.append(T[i-1,j])
-            T[i,j].voisins=l
-    
+                liste.append(T[i-1,j,k])
+            T[i,j,k].voisins=liste
+
     return T
 
     
-def conv (h,L,T):  ##fait un tableau affichable à partir du tableau de voxel 
-    A=np.zeros((h,L))
-    for i in range (h):
-        for j in range (L):
-            A[i,j]=T[i,j].etat
-    return A 
-            
-        
-    
-        
+def conv (h, L, l, T):  ##fait un tableau affichable à partir du tableau de voxel 
+    A = np.zeros((h, L, l))
+    for i in range(h):
+        for j in range(L):
+            for k in range(l):
+                A[i, j, k] = T[i, j, k].etat
+    return A
 
     

@@ -14,14 +14,15 @@ def initialisation_voisins(matrice):
             if voisin.etat == 0:
                 libres.append(voisin)  # On ajoute le voisin libre à la liste des voisins du voxel
                 voxel.libre = libres  # On met à jour la liste des voxels libres du voxel
-        matrice[voxel.coord[0], voxel.coord[1]] = voxel  # On met à jour le voxel dans la matrice 
+        matrice[voxel.coord[0], voxel.coord[1], voxel.coord[2]] = voxel  # On met à jour le voxel dans la matrice 
     return
 
 def generer_voxel(matrice):
-    # On choisit un voxel aléatoire dans la liste des voxels libres
-    voxel_choisi = random.choice(matrice.flatten())
-    while voxel_choisi.etat == 0 or voxel_choisi.libre == []:  # On s'assure que le voxel est libre
-        voxel_choisi = random.choice(matrice.flatten())
+    # On crée un masque pour ne garder que les voxels ayant des voisins libres
+    voxels_avec_libres = [voxel for voxel in matrice.flatten() if voxel.etat == 1 and voxel.libre != []]
+    if voxels_avec_libres == []:
+        return  # Aucun voxel disponible
+    voxel_choisi = random.choice(voxels_avec_libres)
         
     # Génère une nouvelle coordonnée aléatoire pour le voxel
     nouveau_voxel = random.choice(voxel_choisi.libre) # On prend une place libre du voxel choisi
