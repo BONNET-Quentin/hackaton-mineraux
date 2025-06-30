@@ -14,7 +14,7 @@ def initialisation_voisins(matrice):
             if voisin.etat == 0:
                 libres.append(voisin)  # On ajoute le voisin libre à la liste des voisins du voxel
                 voxel.libre = libres  # On met à jour la liste des voxels libres du voxel
-        matrice[voxel.coord[0], voxel.coord[1]] = voxel  # On met à jour le voxel dans la matrice 
+        matrice[voxel.coord[0], voxel.coord[1], voxel.coord[2]] = voxel  # On met à jour le voxel dans la matrice 
     return
 
 def generer_voxel(matrice):
