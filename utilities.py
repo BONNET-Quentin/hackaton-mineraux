@@ -1,5 +1,4 @@
 # Fichier pour toutes les fonctions de représentation etc
-# Fichier principal pour l'algo
 
 # Imports des autres fonctions
 import numpy as np
