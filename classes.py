@@ -1,6 +1,6 @@
 import numpy as np
 
-# Fichier pour créer les classe
+# Fichier pour créer les classes
 
 class voxel :
     def __init__(self,coord,etat,voisins):
@@ -10,16 +10,16 @@ class voxel :
     
 def init_mat (h,L,n):
     
-    T=np.zeros((h,L), dtype=object)
+    T=np.zeros((h,L))
     
     for i in range (h):      ##on définit la matrice 
             for j in range (L):
-                v=voxel((i,j),0)
+                v=voxel((i,j),0,[])
                 T[i,j]=v
             
             
-    s=(L//2)-n//2
-    f=(h//2)-n//2
+    s=int(L/2)-int(L/2)
+    f=int(L/2)+int(L/2)
     
     for i in range (s,s+n):     ##on définit le cristal
         for j in range (f,f+n):
