@@ -3,13 +3,25 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from animation import generate_animation, example_matrices
-from classes import init_mat, conv
+from classes import *
+from utilities import *
 
 # constantes
-h, L = 50,50
+h, L = 20,20
 n = 5 # taille du cristal initial
+Nc = 10 # nombre de cristaux à générer
 
+
+# initialisation de la matrice de fluide avec un cristal au milieu
 T = init_mat(h, L, n)
-A = conv(h, L, T)
+initialisation_voisins(T)
 
-generate_animation([A], interval=500)
+# Génération de la liste des images
+
+ims = []
+for i in range(Nc):
+    generer_voxel(T)
+    ims.append(conv(h, L, T))
+
+# Génération de l'animation
+generate_animation(ims, interval=500)
