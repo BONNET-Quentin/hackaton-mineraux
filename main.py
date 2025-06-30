@@ -5,6 +5,7 @@ import matplotlib.animation as animation
 from animation import generate_animation, example_matrices
 from classes import *
 from utilities import *
+import animation3D as a3d
 
 # constantes
 h, L = 20,20
@@ -24,4 +25,4 @@ for i in range(Nc):
     ims.append(conv(h, L, T))
 
 # Génération de l'animation
-generate_animation(ims, interval=500)
+a3d.generate_animation(a3d.example_matrice, a3d.example_update, interval=500)
