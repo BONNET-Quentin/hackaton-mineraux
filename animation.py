@@ -7,11 +7,11 @@ import matplotlib.animation as animation
 ex_h, ex_L = 50,50
 
 # génération d'une liste de tableaux de booléens de taille (h, L) à afficher
-example_matrix = np.zeros((ex_h,ex_L), dtype=bool)
-example_matrices = []
-for i in range(60):
-    example_matrix = (1-example_matrix)  # mise à jour
-    example_matrices.append(example_matrix)
+#example_matrix = np.zeros((ex_h,ex_L), dtype=bool)
+#example_matrices = []
+#for i in range(60):
+    #example_matrix = (1-example_matrix)  # mise à jour
+    #example_matrices.append(example_matrix)
 
 
 def generate_animation(arrays, interval):
