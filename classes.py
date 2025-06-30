@@ -25,10 +25,11 @@ def init_mat (h,L,l,n):
             
     s=L//2-n//2
     f=h//2-n//2
+    r=l//2-n//2
     
     for i in range (s,s+n):     ##on définit le cristal
         for j in range (f,f+n):
-            for k in range (l):
+            for k in range (r,r+n):
                 T[i,j,k].etat=1
     
     for i in range (h) :
@@ -37,13 +38,17 @@ def init_mat (h,L,l,n):
                 liste=[]
                 if i+1<h:
                     liste.append(T[i+1,j,k])
-                if j-1>=0:
+                if i-1>=0:
                     liste.append(T[i-1,j,k])
                 if j+1<L:
                     liste.append(T[i,j+1,k])
-            if i-1>0: 
-                liste.append(T[i-1,j,k])
-            T[i,j,k].voisins=liste
+                if j-1>=0:
+                    liste.append(T[i,j-1,k])
+                if k+1<l:
+                    liste.append(T[i,j,k+1])
+                if k-1>=0:
+                    liste.append(T[i,j,k-1])
+                T[i,j,k].voisins=liste
 
     return T
 
