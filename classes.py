@@ -48,12 +48,12 @@ def init_mat (h,L,l,n):
     return T
 
     
-def conv (h,L,T):  ##fait un tableau affichable à partir du tableau de voxel 
-    A=np.zeros((h,L))
-    for i in range (h):
-        for j in range (L):
-            for k in range (l):
-                A[i,j,k]=T[i,j,k].etat
+def conv (h, L, l, T):  ##fait un tableau affichable à partir du tableau de voxel 
+    A = np.zeros((h, L, l))
+    for i in range(h):
+        for j in range(L):
+            for k in range(l):
+                A[i, j, k] = T[i, j, k].etat
     return A
 
     
