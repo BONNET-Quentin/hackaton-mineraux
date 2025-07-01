@@ -19,9 +19,10 @@ def update_mat (T):
     T2=np.roll(T,1,0)
     T2[0,:,:]=1  ##un voxel tout en haut ne peut pas avoir de voisins au dessus
     coords_libre_dessus = np.argwhere(T & (1-T2))##1 si le voxel a un voisin libre au dessus de lui 
-    print(coords_libre_dessus)
     v = np.array([1,0,0])
+    print(f"ancienne coordonnée : {coords_libre_dessus}")
     coords_libre_dessus += v
+    print(f"nouvelle coordonnée : {coords_libre_dessus}")
     
     #en dessous
     T2=np.roll(T,-1,0)
