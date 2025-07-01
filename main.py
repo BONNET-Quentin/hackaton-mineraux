@@ -7,19 +7,20 @@ from voxel import init_mat, conv, update_mat
 
 # constantes
 h, w, d = 30,30,30
-n = 5 # taille du cristal initial
+n = 1 # taille du cristal initial
 Nc = 100 # nombre de cristaux à générer
 
 # initialisation de la matrice de fluide avec un cristal au milieu
 T = init_mat(h, w, d, n)
 
 # Fonction de mise à jour de la matrice de voxels
-def update():
-    update_mat(T)
+def update(i):
+    for k in range(10*(i**3)):
+        update_mat(T)
     return conv(T)
 
 # Génération de l'animation
-a3d.generate_animation(conv(T), lambda m,i : update(), interval=500)
+a3d.generate_animation(conv(T), lambda m,i : update(i), interval=500)
 
 # Exemple d'animation 2D
 # a3d.generate_animation(a3d.example_matrice, a3d.example_update, interval=500)
