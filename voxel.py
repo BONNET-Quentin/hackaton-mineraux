@@ -4,11 +4,11 @@ import random as rd
 # Fichier pour créer les classes
 
 class voxel :
-    def __init__(self,coord,etat,voisins,libre):
+    def __init__(self,coord,etat,voisins,p):
         self.coord=coord
         self.etat=etat
         self.voisins=voisins
-
+      
 @np.vectorize 
 def get_etat(v:voxel):
     return v.etat
@@ -33,6 +33,7 @@ def init_mat (h,w,d,n):
         for j in range (f,f+n):
             for k in range (r,r+n):
                 T[i,j,k].etat=1
+            
     
     for i in range (h) :
         for j in range (w) :
