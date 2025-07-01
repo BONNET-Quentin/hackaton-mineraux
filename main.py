@@ -1,28 +1,35 @@
-
 # Imports
 from animation import generate_animation, example_matrices
 import animation3D as a3d
 from voxel import init_mat, conv, update_mat
 
+import matplotlib.pyplot as plt
+from matplotlib import animation
 
 # constantes
 h, w, d = 30,30,30
-n = 1 # taille du cristal initial
-Nc = 100 # nombre de cristaux à générer
-Nc = 100 # nombre de cristaux à générer
+n = 1
 
-
-# initialisation de la matrice de fluide avec un cristal au milieu
+# initialisation de la matrice
 T = init_mat(h, w, d, n)
 
-# Fonction de mise à jour de la matrice de voxels
+# Fonction de mise à jour
 def update(i):
-    for k in range(10*(i**3)):
+    for _ in range(10):
         update_mat(T)
+    print(f"Frame {i}")
     return conv(T)
 
-# Génération de l'animation
-a3d.generate_animation(conv(T), lambda m,i : update(i), interval=500)
+max_frames = 200
 
-# Exemple d'animation 2D
-# a3d.generate_animation(a3d.example_matrice, a3d.example_update, interval=500)
+def update_with_stop(_, i):
+    if i >= max_frames:
+        plt.pause(30)
+        return conv(T)  # Return the final state without further updates
+    return update(i)
+
+# Génération de l'animation
+fig, ani = a3d.generate_animation(conv(T), update_with_stop, interval=100, return_fig=True)
+
+# Enregistrement de l'animation
+ani.save("animation.gif", writer='pillow', fps=100)
