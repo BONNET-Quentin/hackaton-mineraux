@@ -38,4 +38,7 @@ def generate_animation(matrice, update, interval=500, return_fig=False):
 
     ani = animation.FuncAnimation(fig, animate, interval=interval)
     plt.show()
-
+    if return_fig:
+        return fig, ani
+    return ani
+    
