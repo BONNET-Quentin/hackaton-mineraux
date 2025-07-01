@@ -10,7 +10,7 @@ def example_update(matrice, i) :
         matrice[i,i,i] = True
     return matrice
 
-def generate_animation(matrice, update, interval=500, return_fig=False):
+def generate_animation(matrice, update, interval=500, return_fig=False, MAX_FRAMES=100):
     """
     Generate an animation from a 3D array.
     
@@ -19,7 +19,6 @@ def generate_animation(matrice, update, interval=500, return_fig=False):
     update (function matrice, i -> res:np.ndarray): Function to call at each frame 
         (i : index of the frame). res is the result to display.
     interval (int): Delay between frames in milliseconds.
-    frames (int): nombre d'images générées
     
     """
     (w,d,h) = matrice.shape
@@ -38,4 +37,7 @@ def generate_animation(matrice, update, interval=500, return_fig=False):
 
     ani = animation.FuncAnimation(fig, animate, interval=interval)
     plt.show()
-
+    if return_fig:
+        return fig, ani
+    return ani
+    

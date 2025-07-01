@@ -1,10 +1,10 @@
-
 # Imports
 from animation import generate_animation, example_matrices
 import animation3D as a3d
 from voxel_sans_classe import init_mat, update_mat
 import time
 
+import matplotlib.pyplot as plt
 
 # constantes
 h, w, d = 30,30,30
@@ -24,6 +24,14 @@ def update(i):
     for _ in range(100):
         update_mat(T)
     return T
+
+max_frames = 200
+
+def update_with_stop(_, i):
+    if i >= max_frames:
+        plt.pause(30)
+        return T  # Return the final state without further updates
+    return update(i)
 
 # Génération de l'animation
 a3d.generate_animation(T, lambda m,i : update(i), interval=500)
