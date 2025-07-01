@@ -13,7 +13,12 @@ def init_mat (h,w,d,n):
 
     return T
 
-def update_mat (T):
+def update_mat (T,L):
+    """
+    Entrée : 
+    - T : tenseur d'ordre 3 de booléens indiquant si on a un cristal (True) ou du liquide (False)
+    - L : ensemble de positions (np.array) où un cristal peut être ajouté (liquide adjacent à un cristal) 
+    """
     
     #au dessus
     T2=np.roll(T,1,0)
