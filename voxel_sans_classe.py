@@ -10,10 +10,9 @@ def init_mat (h,w,d,n):
     r=d//2-n//2
     
     T[s:s+n, f:f+n, r:r+n] = 1
-    
-    #on fait les matrices des voisins (6 en tout)
-    
-    #au dessus 
+
+
+#au dessus 
     T2=np.roll(T,1,0)
     T2[0,:,:]=1  ##un voxel tout en haut ne peut pas avoir de voisins au dessus
     coords_libre_dessus = np.argwhere(T & (~T2))##1 si le voxel a un voisin libre au dessus de lui
@@ -55,14 +54,16 @@ def init_mat (h,w,d,n):
     v = np.array([0,0,1])
     coords_libre_derriere += v
     
-    L=np.concatenate([coords_libre_dessus,
+    L=bijection(np.concatenate([coords_libre_dessus,
                       coords_libre_dessous,
                       coords_libre_gauche,
                       coords_libre_droite,
                       coords_libre_devant,
-                      coords_libre_derriere])
-
-    return T
+                      coords_libre_derriere]))
+    
+    L=set(L)
+    
+    return T, L
 
 def update_mat (T,L):
     
@@ -74,3 +75,9 @@ def update_mat (T,L):
         T[nv[0],nv[1],nv[2]]=1
 
 
+def bijection(t,n):
+    '''
+    permet de passer d'un array de coordonnées en son entier 
+    '''
+    return t[:,0]*n**2 + t[:,1]*n + t[:,2] 
+    
