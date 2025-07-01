@@ -9,8 +9,6 @@ from voxel import init_mat, conv, update_mat
 h, w, d = 30,30,30
 n = 5 # taille du cristal initial
 Nc = 100 # nombre de cristaux à générer
-Nc = 100 # nombre de cristaux à générer
-
 
 # initialisation de la matrice de fluide avec un cristal au milieu
 T = init_mat(h, w, d, n)
