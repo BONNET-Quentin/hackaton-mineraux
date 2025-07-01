@@ -5,6 +5,7 @@ from voxel_sans_classe import init_mat, update_mat
 import time
 
 import matplotlib.pyplot as plt
+from matplotlib import animation
 
 # constantes
 h, w, d = 30,30,30
@@ -21,7 +22,7 @@ print(f"Temps moyen pour la mise à jour : {(end - start)/Nc} secondes") """
 
 # Fonction de mise à jour de la matrice de voxels
 def update(i):
-    for _ in range(100):
+    for _ in range(10):
         update_mat(T)
     return T
 
