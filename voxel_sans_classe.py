@@ -18,43 +18,44 @@ def update_mat (T):
     #au dessus
     T2=np.roll(T,1,0)
     T2[0,:,:]=1  ##un voxel tout en haut ne peut pas avoir de voisins au dessus
-    coords_libre_dessus = np.argwhere(T & (1-T2))##1 si le voxel a un voisin libre au dessus de lui 
-    print(coords_libre_dessus)
-    v = np.array([1,0,0])
+    coords_libre_dessus = np.argwhere(T & (~T2))##1 si le voxel a un voisin libre au dessus de lui 
+    v = np.array([-1,0,0])
     coords_libre_dessus += v
+    
     
     #en dessous
     T2=np.roll(T,-1,0)
     T2[-1,:,:]=1  ##un voxel tout en haut ne peut pas avoir de voisins au dessus
-    coords_libre_dessous = np.argwhere(T & (1-T2)) + np.array([-1,0,0]) 
-    v = np.array([-1,0,0])
+    coords_libre_dessous = np.argwhere(T & (~T2))
+    v = np.array([1,0,0])
     coords_libre_dessous += v
     
     #à gauche
     T2=np.roll(T,1,1)
     T2[:,0,:]=1  ##un voxel tout en haut ne peut pas avoir de voisins au dessus
-    coords_libre_gauche = np.argwhere(T & (1-T2)) + np.array([0,1,0]) ##1 si le voxel a un voisin libre au dessus de lui
-    v = np.array([0,1,0])
+    coords_libre_gauche = np.argwhere(T & (~T2)) ##1 si le voxel a un voisin libre au dessus de lui
+    v = np.array([0,-1,0])
     coords_libre_gauche += v
+
     #à droite
     T2=np.roll(T,-1,1)
     T2[:,-1,:]=1  ##un voxel tout en haut ne peut pas avoir de voisins au dessus
-    coords_libre_droite = np.argwhere(T & (1-T2)) + np.array([0,-1,0]) ##1 si le voxel a un voisin libre au dessus de lui
-    v = np.array([0,-1,0])
+    coords_libre_droite = np.argwhere(T & (~T2)) ##1 si le voxel a un voisin libre au dessus de lui
+    v = np.array([0,1,0])
     coords_libre_droite += v
     
     #devant
     T2=np.roll(T,1,2)
     T2[:,:,0]=1  ##un voxel tout en haut ne peut pas avoir de voisins au dessus
-    coords_libre_devant = np.argwhere(T & (1-T2)) + np.array([0,0,1]) ##1 si le voxel a un voisin libre au dessus de lui
-    v = np.array([0,0,1])
+    coords_libre_devant = np.argwhere(T & (~T2)) ##1 si le voxel a un voisin libre au dessus de lui
+    v = np.array([0,0,-1])
     coords_libre_devant += v
     
     #derrière
     T2=np.roll(T,-1,2)
     T2[:,:,-1]=1  ##un voxel tout en haut ne peut pas avoir de voisins au dessus
-    coords_libre_derriere = np.argwhere(T & (1-T2)) + np.array([0,0,-1]) ##1 si le voxel a un voisin libre au dessus de lui
-    v = np.array([0,0,-1])
+    coords_libre_derriere = np.argwhere(T & (~T2)) ##1 si le voxel a un voisin libre au dessus de lui
+    v = np.array([0,0,1])
     coords_libre_derriere += v
     
     L=np.concatenate([coords_libre_dessus,
@@ -64,13 +65,11 @@ def update_mat (T):
                       coords_libre_devant,
                       coords_libre_derriere])
     
-    idx=np.random.randint(L.shape[0])
-    
-    nv=L[idx,:]
-    
-    print(f"coordonnées : {nv[0],nv[1],nv[2]}")
-    print(T[nv[0],nv[1],nv[2]])
-    T[nv[0],nv[1],nv[2]]=1
-    print(T[nv[0],nv[1],nv[2]])
+    if L.shape[0] > 0:
+        idx=np.random.randint(L.shape[0])
+
+        nv=L[idx,:]
+
+        T[nv[0],nv[1],nv[2]]=1
 
 
