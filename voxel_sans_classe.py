@@ -9,7 +9,7 @@ def init_mat (h,w,d,n):
     f=w//2-n//2
     r=d//2-n//2
     
-    T[s:s+n, f:f+n, r:r+n] = 1
+    T[s:s+n, f:f+n, r:r+n] = True
 
 
 #au dessus 
@@ -54,12 +54,12 @@ def init_mat (h,w,d,n):
     v = np.array([0,0,1])
     coords_libre_derriere += v
     
-    L=bijection(np.concatenate([coords_libre_dessus,
+    L=np.concatenate([coords_libre_dessus,
                       coords_libre_dessous,
                       coords_libre_gauche,
                       coords_libre_droite,
                       coords_libre_devant,
-                      coords_libre_derriere]))
+                      coords_libre_derriere])
     
     L=set(L)
     
@@ -81,13 +81,3 @@ def update_mat (T,L):
 
         T[nv[0],nv[1],nv[2]]=1
         L.pop(nv)
-    
-
-
-
-def bijection(t,n):
-    '''
-    permet de passer d'un array de coordonnées en son entier 
-    '''
-    return t[:,0]*n**2 + t[:,1]*n + t[:,2] 
-    
