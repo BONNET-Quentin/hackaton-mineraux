@@ -13,7 +13,15 @@ def init_mat (h,w,d,n):
 
     return T
 
-def update_mat (T, C):
+def update_mat (T, C, f):
+    """
+    Update a matrix of boolean representing a crystal (True) in its fluid environment (False).
+    
+    Parameters : 
+        - T : 3D boolean numpy array representing the crystal and its environment.
+        - C : 3D boolean numpy array representing the voxels that were added to the crystal since its initialisation. (for display purposes only)
+        - f(T, v) -> bool : Function that takes the current matrix and a voxel coordinate, and returns True if the voxel should be added to the crystal.
+    """
     
     # au dessus
     T2 = np.roll(T, 1, 0)
@@ -67,10 +75,14 @@ def update_mat (T, C):
     ])
 
     if L.shape[0] > 0:
-        idx = np.random.randint(L.shape[0])
-        nv = L[idx, :]
-        T[nv[0], nv[1], nv[2]] = True
-        C[nv[0],nv[1],nv[2]] = 1
+        grown = False
+        while not grown:
+            idx = np.random.randint(L.shape[0])
+            nv = L[idx, :]
+            grown = f(T, nv)
+            if grown : 
+                T[nv[0], nv[1], nv[2]] = True
+                C[nv[0],nv[1],nv[2]] = True
 
 def cristal (T, a, b, c):
     h,w,d = T.shape
