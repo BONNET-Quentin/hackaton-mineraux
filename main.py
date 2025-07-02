@@ -24,6 +24,7 @@ print(f"Temps moyen pour la mise à jour : {(end - start)/Nc} secondes") """
 def update(i):
     for _ in range(10*(i**2)):
         update_mat(T)
+    print(f"Frame {i} générée")
     return T
 
 # Fonction de mise à jour de la matrice de voxels avec arrêt après un certain nombre de frames
@@ -35,10 +36,10 @@ def update_with_stop(_, i):
     return update(i)
 
 # Génération de l'animation
-fig, ani = a3d.generate_animation(T, lambda m,i : update(i), interval=100, return_fig=True)
+fig, ani = a3d.generate_animation(T, lambda m,i : update(i), interval=100, return_fig=True, show=False)
 
 # Exemple d'animation 2D
 # a3d.generate_animation(a3d.example_matrice, a3d.example_update, interval=500)
 
 # Enregistrement de l'animation
-ani.save('animation.gif', writer='pillow', fps=100)
+ani.save('animation.gif', writer='pillow', fps=5)
