@@ -13,7 +13,7 @@ def init_mat (h,w,d,n):
 
     return T
 
-def update_mat (T):
+def update_mat (T, C):
     
     # au dessus
     T2 = np.roll(T, 1, 0)
@@ -70,3 +70,20 @@ def update_mat (T):
         idx = np.random.randint(L.shape[0])
         nv = L[idx, :]
         T[nv[0], nv[1], nv[2]] = True
+        C[nv[0],nv[1],nv[2]] = 1
+
+def cristal (T, a, b, c):
+    h,w,d = T.shape
+    x,y,z = rd.randint(0,h-1),rd.randint(0,w-1),rd.randint(0,d-1),
+    T[x,y,z] = True
+   
+    T[max(0,x-a//2):min(h,x+a//2), max(0,y-b//2):min(w,y+b//2), max(0,z-c//2):min(d,z+c//2)] = True
+    return T
+
+def bille(T,r):
+    h,w,d = T.shape
+    x,y,z = rd.randint(0,h-1),rd.randint(0,w-1),rd.randint(0,d-1),
+    T[x,y,z] = True
+
+    T[((X := np.ogrid[:h, :w, :d])[0] - x)**2 + (X[1] - y)**2 + (X[2] - z)**2 < r**2] = True  
+    return T

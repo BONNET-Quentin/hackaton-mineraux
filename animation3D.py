@@ -10,7 +10,7 @@ def example_update(matrice, i) :
         matrice[i,i,i] = True
     return matrice
 
-def generate_animation(matrice, update, interval=500, return_fig=False, show=True):
+def generate_animation(matrice, growth, update, interval=500, return_fig=False, show=True):
     """
     Generate an animation from a 3D array.
     
@@ -33,8 +33,9 @@ def generate_animation(matrice, update, interval=500, return_fig=False, show=Tru
     ax.set_zlim(0, h)
 
     def animate(i):
-        to_display = update(matrice, i)
+        to_display, growth_to_display = update(matrice, i)
         ax.voxels(to_display, facecolors='cyan', alpha=0.5)
+        ax.voxels(growth_to_display, facecolors='red', alpha=0.5)
 
     ani = animation.FuncAnimation(fig, animate, interval=interval)
 
