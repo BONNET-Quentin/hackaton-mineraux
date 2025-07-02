@@ -66,13 +66,23 @@ def init_mat (h,w,d,n):
     return T, L
 
 def update_mat (T,L):
-    
-    if L.shape[0] > 0:
-        idx=np.random.randint(L.shape[0])
+    """
+    Entrée : 
+    - T : tenseur d'ordre 3 représentant la phase présente en chaque coordonnée
+    - L : set(np.array) contenant les coordonnées des voxels qui peuvent pousser (liquide, adjacent à un solide)
 
-        nv=L[idx,:]
+    Sortie : Met à jour T et L en faisant pousser un cristal parmi les éléments de L
+    """
+    
+    if L != {}:
+
+        idx=np.random.randint(len(L))
+        nv=L[idx]
 
         T[nv[0],nv[1],nv[2]]=1
+        L.pop(nv)
+    
+
 
 
 def bijection(t,n):
