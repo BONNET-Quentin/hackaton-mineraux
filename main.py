@@ -8,7 +8,7 @@ import time
 
 # constantes
 h, w, d = 50, 150, 50
-n = 1 # taille du cristal initial
+n = 15 # taille du cristal initial
 Nc = 5000 # nombre de cristaux à générer
 NEIGHBOURS = [
     np.array([-1, 0, 0]),  # au dessus
@@ -53,7 +53,7 @@ def probability_function(T, C, L, mask):
     C[tuple(L.T)] = grown 
 
     
-MASK = np.array([0.01,0.01, 0.48, 0.48, 0.01, 0.01])*0.5
+MASK = np.array([0.01,0.01, 0.48, 0.48, 0.01, 0.01])
 
 
 # initialisation de la matrice de fluide avec plusieurs cristaux
@@ -65,7 +65,7 @@ C = np.zeros((h,w,d), dtype = bool)
 """
 start = time.time()
 for _ in range(Nc):
-    update_mat(T)
+    update_mat(T,C)
 end = time.time()
 print(f"Temps moyen pour la mise à jour : {(end - start)/Nc} secondes") """
 
