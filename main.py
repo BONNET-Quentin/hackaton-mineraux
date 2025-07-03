@@ -19,16 +19,16 @@ C = np.zeros((h,w,d), dtype = bool)
 for k in range (2):
     T = cristal(T, rd.randint(5,10), rd.randint(5,10), rd.randint(5,10))
     T = bille(T,rd.randint(2,6))
-"""
+
 start = time.time()
 for _ in range(Nc):
-    update_mat(T)
+    update_mat(T,C)
 end = time.time()
-print(f"Temps moyen pour la mise à jour : {(end - start)/Nc} secondes") """
+print(f"Temps moyen pour la mise à jour : {(end - start)/Nc} secondes") 
 
 # Fonction de mise à jour de la matrice de voxels
 def update(i):
-    for _ in range(10*(i**2)):
+    for _ in range(10):
         update_mat(T, C)
     print(f"Frame {i} générée")
     return T, C
