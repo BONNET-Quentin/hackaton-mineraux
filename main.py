@@ -1,5 +1,4 @@
 # Imports
-from animation2D import generate_animation
 import animation3D as a3d
 from simulation import init_mat, update_mat
 import numpy as np
