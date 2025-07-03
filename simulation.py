@@ -74,15 +74,11 @@ def update_mat (T, C, f):
         coords_libre_derriere
     ])
 
-    if L.shape[0] > 0:
-        grown = False
-        while not grown:
-            idx = np.random.randint(L.shape[0])
-            nv = L[idx, :]
-            grown = f(T, nv)
-            if grown : 
-                T[nv[0], nv[1], nv[2]] = True
-                C[nv[0],nv[1],nv[2]] = True
+    for i in range(L.shape[0]):
+        nv = L[i,:]
+        grown = f(T, nv)
+        T[nv[0], nv[1], nv[2]] = grown
+        C[nv[0], nv[1], nv[2]] = grown
 
 def cristal (T, a, b, c):
     h,w,d = T.shape

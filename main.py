@@ -4,6 +4,7 @@ from simulation import init_mat, update_mat
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import bernoulli
+import time
 
 # constantes
 h, w, d = 50, 150, 50
@@ -58,9 +59,10 @@ print(f"Temps moyen pour la mise à jour : {(end - start)/Nc} secondes") """
 
 # Fonction de mise à jour de la matrice de voxels
 def update(i):
-    for _ in range(10*((i+1)**2)):
+    start = time.time()
+    for _ in range(20):
         update_mat(T, C, lambda T, v: probability_function(T,v,MASK))
-    print(f"Frame {i+1} générée")
+    print(f"Frame {i+1} générée en {(time.time() - start)} secondes")
     return T, C
 
 # Fonction de mise à jour de la matrice de voxels avec arrêt après un certain nombre de frames
@@ -72,7 +74,7 @@ def update_with_stop(_, i):
     return update(i)
 
 # Génération de l'animation
-ani = a3d.generate_animation(T, lambda _,i : update(i), interval=100, show=False)
+ani = a3d.generate_animation(T, lambda _,i : update(i), interval=100, show=True)
 
 # Exemple d'animation 2D
 # a3d.generate_animation(a3d.example_matrice, a3d.example_update, interval=500)
