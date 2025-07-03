@@ -1,8 +1,7 @@
 # Imports
 from animation2D import generate_animation
-from voxel_sans_classe import init_mat, update_mat, cristal, bille
+from simulation import init_mat, update_mat, cristal, bille
 import random as rd
-import time
 import numpy as np
 import matplotlib.pyplot as plt
 
