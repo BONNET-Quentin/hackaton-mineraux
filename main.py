@@ -8,7 +8,7 @@ import time
 
 # constantes
 h, w, d = 50, 150, 50
-n = 15 # taille du cristal initial
+n = 1 # taille du cristal initial
 Nc = 5000 # nombre de cristaux à générer
 NEIGHBOURS = [
     np.array([-1, 0, 0]),  # au dessus

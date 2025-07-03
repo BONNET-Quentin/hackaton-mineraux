@@ -133,12 +133,7 @@ def update_mat (T, C, f):
         coords_libre_derriere
     ])
     if C.sum()/(h*w*d) <0.01:
-        if L.shape[0] > 0:
-            idx = np.random.randint(L.shape[0])
-            nv = L[idx, :]
-            T[nv[0], nv[1], nv[2]] = True
-            C[nv[0],nv[1],nv[2]] = 1
-            
+        f(T,C,L)
     else : 
         growth_state(T,C)
         
