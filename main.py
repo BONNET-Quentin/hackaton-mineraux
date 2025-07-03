@@ -47,12 +47,13 @@ def probability_function(T, C, L, mask):
         thetas += T[tuple((L + NEIGHBOURS[i]).T)] * mask[i]
     thetas = np.clip(thetas, 0, 1)  # S'assurer que les valeurs sont entre 0 et 1
     grown = np.bool(bernoulli.rvs(thetas))
+    print(f"nombre de nouveaux cristaux : {np.sum(grown)}")
     # Mise à jour des matrices T et C
     T[tuple(L.T)] = grown
     C[tuple(L.T)] = grown 
 
     
-MASK = [0.01,0.01, 0.48, 0.48, 0.01, 0.01]
+MASK = np.array([0.01,0.01, 0.48, 0.48, 0.01, 0.01])*0.1
 
 
 # initialisation de la matrice de fluide avec plusieurs cristaux
