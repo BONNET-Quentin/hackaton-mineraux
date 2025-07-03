@@ -53,7 +53,7 @@ def probability_function(T, C, L, mask):
     C[tuple(L.T)] = grown 
 
     
-MASK = np.array([0.01,0.01, 0.48, 0.48, 0.01, 0.01])*0.1
+MASK = np.array([0.01,0.01, 0.48, 0.48, 0.01, 0.01])*0.5
 
 
 # initialisation de la matrice de fluide avec plusieurs cristaux
