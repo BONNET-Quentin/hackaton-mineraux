@@ -1,5 +1,5 @@
 # Imports
-from animation import generate_animation, example_matrices
+from animation2D import generate_animation
 import animation3D as a3d
 from voxel_sans_classe import init_mat, update_mat, cristal, bille
 import random as rd
@@ -38,7 +38,7 @@ max_frames = 200
 def update_with_stop(_, i):
     if i >= max_frames:
         plt.pause(30)
-        return T  # Return the final state without further updates
+        return T, C  # Return the final state without further updates
     return update(i)
 
 # Génération de l'animation
