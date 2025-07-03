@@ -56,7 +56,6 @@ def update_mat (T, C):
     coords_libre_derriere = np.argwhere(T & (~T2))
     v = np.array([0, 0, 1])
     coords_libre_derriere += v
-<<<<<<< HEAD
     
     L=np.unique(np.concatenate([coords_libre_dessus,
                       coords_libre_dessous,
@@ -68,8 +67,6 @@ def update_mat (T, C):
     L={k:L[k] for k in range(L.shape[0])}
     
     return T, L
-=======
->>>>>>> 41946970c7b183315436e4d36f7ff82964ab5979
 
     L = np.concatenate([
         coords_libre_dessus,
@@ -99,10 +96,5 @@ def bille(T,r):
     x,y,z = rd.randint(0,h-1),rd.randint(0,w-1),rd.randint(0,d-1),
     T[x,y,z] = True
 
-<<<<<<< HEAD
 
 
-=======
-    T[((X := np.ogrid[:h, :w, :d])[0] - x)**2 + (X[1] - y)**2 + (X[2] - z)**2 < r**2] = True  
-    return T
->>>>>>> 41946970c7b183315436e4d36f7ff82964ab5979
