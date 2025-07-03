@@ -20,7 +20,7 @@ def update_mat (T, C, f):
     Parameters : 
         - T : 3D boolean numpy array representing the crystal and its environment.
         - C : 3D boolean numpy array representing the voxels that were added to the crystal since its initialisation. (for display purposes only)
-        - f(T, v) -> bool : Function that takes the current matrix and a voxel coordinate, and returns True if the voxel should be added to the crystal.
+        - f(T, C, L) : Function that takes the current matrices and a matrix of voxel coordinate (3 lines), and randomly turns some of them to True.
     """
     
     # au dessus
@@ -74,11 +74,7 @@ def update_mat (T, C, f):
         coords_libre_derriere
     ])
 
-    for i in range(L.shape[0]):
-        nv = L[i,:]
-        grown = f(T, nv)
-        T[nv[0], nv[1], nv[2]] = grown
-        C[nv[0], nv[1], nv[2]] = grown
+    f(T, C, L)
 
 def cristal (T, a, b, c):
     h,w,d = T.shape
