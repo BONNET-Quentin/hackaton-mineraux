@@ -13,6 +13,7 @@ def init_mat (h,w,d,n):
 
     return T
 
+<<<<<<< HEAD:voxel_sans_classe.py
 def growth_state(T,C):
     h,w,d = T.shape
     # au dessus
@@ -72,6 +73,17 @@ def growth_state(T,C):
             C[nv[0],nv[1],nv[2]] = True
     
 def update_mat (T, C):
+=======
+def update_mat (T, C, f):
+    """
+    Update a matrix of boolean representing a crystal (True) in its fluid environment (False).
+    
+    Parameters : 
+        - T : 3D boolean numpy array representing the crystal and its environment.
+        - C : 3D boolean numpy array representing the voxels that were added to the crystal since its initialisation. (for display purposes only)
+        - f(T, C, L) : Function that takes the current matrices and a matrix of voxel coordinate (3 lines), and randomly turns some of them to True.
+    """
+>>>>>>> 031dced730cfcf370895c0850ed052b2863ffb53:simulation.py
     
     h,w,d = T.shape
     # au dessus
@@ -135,9 +147,13 @@ def update_mat (T, C):
         growth_state(T,C)
         
 
+<<<<<<< HEAD:voxel_sans_classe.py
 
 
         
+=======
+    f(T, C, L)
+>>>>>>> 031dced730cfcf370895c0850ed052b2863ffb53:simulation.py
 
 def cristal (T, a, b, c):
     h,w,d = T.shape
