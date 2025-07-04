@@ -23,7 +23,6 @@ def generate_animation(T, ims, direction, plan, interval, fig=None, ax=None):
     ax.set_facecolor('white')
 
     for T in ims:
-        print(T.shape)
         if direction == 0:  # Plan x
             slice_T = T[plan, :, :]
         elif direction == 1:  # Plan y

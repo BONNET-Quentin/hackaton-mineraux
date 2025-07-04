@@ -12,8 +12,9 @@ NEIGHBOURS = [
     np.array([0, 0, -1]),  # devant
     np.array([0, 0, 1])    # derrière
 ]
-MASK = np.array([0.001,0.001, 0.496, 0.496, 0.001, 0.001])*0.1 # probabilité de croissance dans chaque direction, suit le même ordre que NEIGHBOURS
-p_new = lambda n : 0.0001*np.exp(-n) # probabilité de changer de direction en fonction du nombre de voisins
+c, d = 0.1, 0.01 # paramètres de proba de croissance et de germination
+MASK = np.array([0.001,0.001, 0.496, 0.496, 0.001, 0.001])*c # probabilité de croissance dans chaque direction, suit le même ordre que NEIGHBOURS
+p_new = lambda n : 0.01*d*np.exp(-n) # probabilité de changer de direction en fonction du nombre de voisins
 
 # fonction déterminant si on doit générer ou non un cristal
 def generation(T, L, orientations, masks, p_new):
@@ -49,6 +50,7 @@ def generation(T, L, orientations, masks, p_new):
     for idx, pos in enumerate(tuple(L)):
         # Extraire le cube 3x3x3 autour de la position pos
         x, y, z = pos
+        # print(pos)
         local_cube = T[x-1:x+2, y-1:y+2, z-1:z+2]>0
         # Produit scalaire avec le masque de probabilité correspondant
         thetas[idx] = np.sum(local_cube * prob_masks[:,:,:, idx].reshape(3,3,3))
