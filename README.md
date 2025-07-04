@@ -2,7 +2,7 @@
 
 Le but de ce hackaton est de simuler la génération de cristaux solides dans une matrice liquide : un procédé stochastique de croissance. 
 
-Pour les principes de base on part d'une modélisation sous forme d'une matrice de booléens (True si c'est un solide/précipité et False si c'est un liquide). Ci-dessous l'ordre de réalisation du projet, qu'on simplifie au départ pour avoir des programmes qui compilent, et qu'on complexifie derrière pour rajouter des modélisations/optimisations. Les versions d'intêret sont : version 6 avec génération aléatoire et croissance isotrope avec des couleurs, la version 7 avec la coupe du plan 2D avec génération aléatoire et croissance isotrope avec des couleurs, la version 8 avec anisotropie simple sans génération aléatoire, la version 9 qui lui rajoute l'analyse 2D. 
+Pour les principes de base on part d'une modélisation sous forme d'une matrice de booléens (True si c'est un solide/précipité et False si c'est un liquide). Ci-dessous l'ordre de réalisation du projet, qu'on simplifie au départ pour avoir des programmes qui compilent, et qu'on complexifie derrière pour rajouter des modélisations/optimisations. Les versions d'intêret sont : version 6 avec génération aléatoire et croissance isotrope avec des couleurs, la version 7 avec la coupe du plan 2D avec génération aléatoire et croissance isotrope avec des couleurs, la version 9 avec anisotropie simple sans génération aléatoire qui rajoute l'analyse 2D (on peut faire l'animation 3D avec main et la découpe avec main_2D), et la version 10 qui rajoute une anisotropie plus réaliste avec des couleurs de direction de croissance.
 
 Même si tout est organisé dans des dossiers sous forme de versions (car les commit sont très nombreux et confus), le hash du commit de la version finale est : .
 
@@ -29,6 +29,8 @@ La plupart des versions fonctionnent juste en compilant le code main.py. En ce q
 -La version 9 fusionne la version 7 et 9 pour pouvoir visualiser l'animation de la découpe en 2D de la croissance anisotrope.
 
 -La version 10 intègre des directions de générations en utilisant des masques de croissance et de rotation dans la matrice, pour générer des excroissances qui donnent plus l'air d'une croissance anisotrope aléatoire (pas selon des directions orthogonales simples) tout en rajoutant des couleurs selon l'orientation de la croissance.
+
+Piste future : rajouter des germes aléatoires dans la matrice ? Calculer le taux de remplissage de la matrice ? Porosité ? Rajouter des cristaux initiaux dans la matrice pour avoir plusieurs précipitations ? Fusionner la découpe 2D avec la dernière version pour visualiser une coupe ?.
 
 # Bijection utilisée entre $[|1,n^3|]$ et $[|1,n|]\times[|1,n|]\times[|1,n|]$ :
 $$f_n : [|0,n^3-1|] \to [|0,n-1|]\times[|0,n-1|]\times[|0,n-1|], k \mapsto (k//n^2, (k\%n^2)//n, (k\%n^2)\%n)$$
