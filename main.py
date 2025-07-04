@@ -112,11 +112,13 @@ def affichage(T, ims, direction, plan):
             plt.tight_layout()
             plt.show()
 
+""" Attention, lors des simulations, le nombre d'image à générer pour obtenir un résultat convaincant peut grandement varier,
+selon le bon vouloir de la fonciton scipy.stats.bernoulli.rvs"""
 # Simuler et enregistrer la matrice finale
 #simulate(2000, save=True)
 
 # Simuler et enregistrer les matrices au fur et à mesure
-# simulate(400, save_all=10) #toutes les 10 matrices
+simulate(400, save_all=10) #toutes les 10 matrices
 
 # Simuler et enregistrer une animation
 #simulate(2000, animation=10) #toutes les 10 matrices
