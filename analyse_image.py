@@ -146,5 +146,3 @@ else: # ATTENTION 0 PRENDRE UN PLAN QUI EXISTE DANS LA MATRICE
 
 # ICI CHOISIR DE TRACER
 affichage(T, C, ims, direction, plan) # ATTENTION PEUT ETRE TRES LONG, 30s à 1min
-plt.savefig('image3D.png')  # Enregistrer l'image 3D si nécessaire
-
