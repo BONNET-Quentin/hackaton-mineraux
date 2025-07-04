@@ -31,8 +31,3 @@ La plupart des versions fonctionnent juste en compilant le code main.py. En ce q
 -La version 10 intègre des directions de générations en utilisant des masques de croissance et de rotation dans la matrice, pour générer des excroissances qui donnent plus l'air d'une croissance anisotrope aléatoire (pas selon des directions orthogonales simples) tout en rajoutant des couleurs selon l'orientation de la croissance.
 
 Piste future : rajouter des germes aléatoires dans la matrice ? Calculer le taux de remplissage de la matrice ? Porosité ? Rajouter des cristaux initiaux dans la matrice pour avoir plusieurs précipitations ? Fusionner la découpe 2D avec la dernière version pour visualiser une coupe ?.
-
-# Bijection utilisée entre $[|1,n^3|]$ et $[|1,n|]\times[|1,n|]\times[|1,n|]$ :
-$$f_n : [|0,n^3-1|] \to [|0,n-1|]\times[|0,n-1|]\times[|0,n-1|], k \mapsto (k//n^2, (k\%n^2)//n, (k\%n^2)\%n)$$
-
-$$f_n^{-1} (x,y,z) = n^2*x + n*y + z$$
