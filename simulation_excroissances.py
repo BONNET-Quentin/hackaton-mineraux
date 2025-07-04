@@ -43,10 +43,9 @@ def update_mat(T, f, f_param):
                                   L représente la liste des lieux où ils peuvent pousser et orientations leur orientation
         - f_param : un paramètre supplémentaire à donner à f
     """
-    h,w,d = T.shape
     # au dessus
     Tt = np.roll(T, 1, 0)
-    Tt[0, :, :] = 1  # un voxel tout en haut ne peut pas avoir de voisins au dessus
+    Tt[[0, -1], :, :] = 1; Tt[:, [0, -1], :] = 1; Tt[:, :, [0, -1]] = 1 #padding
     coords_libre_dessus = np.argwhere((T > 0) & (Tt == 0))  # 1 si le voxel a un voisin libre au dessus de lui 
     orientations_dessus = T[tuple(coords_libre_dessus.T)]
     v = np.array([-1, 0, 0])
@@ -54,7 +53,7 @@ def update_mat(T, f, f_param):
 
     # en dessous
     Tbo = np.roll(T, -1, 0)
-    Tbo[-1, :, :] = 1
+    Tbo[[0, -1], :, :] = 1; Tbo[:, [0, -1], :] = 1; Tbo[:, :, [0, -1]] = 1
     coords_libre_dessous = np.argwhere((T > 0) & (Tbo == 0))
     orientations_dessous = T[tuple(coords_libre_dessous.T)]
     v = np.array([1, 0, 0])
@@ -62,7 +61,7 @@ def update_mat(T, f, f_param):
 
     # à gauche
     Tl = np.roll(T, 1, 1)
-    Tl[:, 0, :] = 1
+    Tl[[0, -1], :, :] = 1; Tl[:, [0, -1], :] = 1; Tl[:, :, [0, -1]] = 1
     coords_libre_gauche = np.argwhere((T > 0) & (Tl == 0))
     orientations_gauche = T[tuple(coords_libre_gauche.T)]
     v = np.array([0, -1, 0])
@@ -70,7 +69,7 @@ def update_mat(T, f, f_param):
 
     # à droite
     Tr = np.roll(T, -1, 1)
-    Tr[:, -1, :] = 1
+    Tr[[0, -1], :, :] = 1; Tr[:, [0, -1], :] = 1; Tr[:, :, [0, -1]] = 1
     coords_libre_droite = np.argwhere((T > 0) & (Tr == 0))
     orientations_droite = T[tuple(coords_libre_droite.T)]
     v = np.array([0, 1, 0])
@@ -78,7 +77,7 @@ def update_mat(T, f, f_param):
 
     # devant
     Tf = np.roll(T, 1, 2)
-    Tf[:, :, 0] = 1
+    Tf[[0, -1], :, :] = 1; Tf[:, [0, -1], :] = 1; Tf[:, :, [0, -1]] = 1
     coords_libre_devant = np.argwhere((T > 0) & (Tf == 0))
     orientations_devant = T[tuple(coords_libre_devant.T)]
     v = np.array([0, 0, -1])
@@ -86,7 +85,7 @@ def update_mat(T, f, f_param):
 
     # derrière
     Tba = np.roll(T, -1, 2)
-    Tba[:, :, -1] = 1
+    Tba[[0, -1], :, :] = 1; Tba[:, [0, -1], :] = 1; Tba[:, :, [0, -1]] = 1
     coords_libre_derriere = np.argwhere((T > 0) & (Tba == 0))
     orientations_derriere = T[tuple(coords_libre_derriere.T)]
     v = np.array([0, 0, 1])

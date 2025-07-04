@@ -70,5 +70,6 @@ for c in coul :
 ax = plt.figure().add_subplot(projection='3d')
 
 ax.scatter(Vx, Vy, Vz, marker = '*')
+ax.set_title("Répartition des changements d'orientation possibles")
 
 plt.show()

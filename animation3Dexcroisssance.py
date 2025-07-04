@@ -34,7 +34,7 @@ def generate_animation(matrice, update, interval=500, show=True):
     ax.set_zlim(0, d)
     
     base_cmap = plt.get_cmap('tab20', 20) # on sélectionne les 20 couleurs de la table 'tab20'
-    colors = [base_cmap[i%20] for i in range (255)] # on récupère nos 256 couleurs (répétition des 20 couleurs)
+    colors = [base_cmap(i%20) for i in range (256)] # on récupère nos 256 couleurs (répétition des 20 couleurs)
     cmap = plt.ListedColormap(colors)
     
     def animate(i):

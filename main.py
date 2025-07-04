@@ -86,7 +86,7 @@ def update_with_stop(_, i):
     return update(i)
 
 # Génération de l'animation
-ani = a3d.generate_animation(T, update_with_stop, interval=100, show=False)
+ani = a3d.generate_animation(T, update_with_stop, interval=100, show=True)
 
 # Exemple d'animation 2D
 # a3d.generate_animation(a3d.example_matrice, a3d.example_update, interval=500)
