@@ -33,16 +33,17 @@ def generate_animation(matrice, update, interval=500, show=True):
     ax.set_ylim(0, w)
     ax.set_zlim(0, d)
     
-    cmap = plt.get_cmap('viridis') #cmap renvoie un [r,g,b,alpha] à partir d'une valeur entre 0 et 1, 
-
+    base_cmap = plt.get_cmap('tab20', 20) # on sélectionne les 20 couleurs de la table 'tab20'
+    colors = [base_cmap[i%20] for i in range (255)] # on récupère nos 256 couleurs (répétition des 20 couleurs)
+    cmap = plt.ListedColormap(colors)
+    
     def animate(i):
         
         to_display = update(matrice, i)
-        normalized = to_display / 255 # on normaise nos entiers pour qu'ils soient compris entre 0 et 1
-        rgba_colors = cmap(normalized) 
+        rgba_colors = cmap(to_display) 
         rgba_colors[to_display == 0] = [0, 0, 0, 0] # on rend transparent le fluide qui a une valeur de 0
         
-        ax.voxels(normalized, facecolors=rgba_colors, alpha=0.5)
+        ax.voxels(to_display, facecolors=rgba_colors, alpha=0.5)
 
     ani = animation.FuncAnimation(fig, animate, interval=interval)
 
