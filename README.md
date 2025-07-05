@@ -4,7 +4,7 @@ Le but de ce hackaton est de simuler la génération de cristaux solides dans un
 
 Pour les principes de base on part d'une modélisation sous forme d'une matrice de booléens (True si c'est un solide/précipité et False si c'est un liquide). Ci-dessous l'ordre de réalisation du projet, qu'on simplifie au départ pour avoir des programmes qui compilent, et qu'on complexifie derrière pour rajouter des modélisations/optimisations. Les versions d'intêret sont : version 6 avec génération aléatoire et croissance isotrope avec des couleurs, la version 7 avec la coupe du plan 2D avec génération aléatoire et croissance isotrope avec des couleurs, la version 9 avec anisotropie simple sans génération aléatoire qui rajoute l'analyse 2D (on peut faire l'animation 3D avec main et la découpe avec main_2D), et la version 10 qui rajoute une anisotropie plus réaliste avec des couleurs de direction de croissance.
 
-Même si tout est organisé dans des dossiers sous forme de versions (car les commit sont très nombreux et confus), le hash du commit de la version finale est : .
+Même si tout est organisé dans des dossiers sous forme de versions (car les commit sont très nombreux et confus), le hash du commit de la version finale est : c8cb6ce26443626029cc14540f8ed647fd023a9c
 
 La plupart des versions fonctionnent juste en compilant le code main.py. En ce qui concerne les bibliothèques, tout est sur du numpy, matplotlib et scipy (assez classiques, les installations déjà faites auparavants dans l'UE était suffisant sans faire de pip install). Le seul problème reste le mp4 avec ffmpeg mais comme on le verra plus tard il n'est pas très utile sachant qu'on a le .gif
 
@@ -30,4 +30,4 @@ La plupart des versions fonctionnent juste en compilant le code main.py. En ce q
 
 -La version 10 intègre des directions de générations en utilisant des masques de croissance et de rotation dans la matrice, pour générer des excroissances qui donnent plus l'air d'une croissance anisotrope aléatoire (pas selon des directions orthogonales simples) tout en rajoutant des couleurs selon l'orientation de la croissance.
 
-Piste future : rajouter des germes aléatoires dans la matrice ? Calculer le taux de remplissage de la matrice ? Porosité ? Rajouter des cristaux initiaux dans la matrice pour avoir plusieurs précipitations ? Fusionner la découpe 2D avec la dernière version pour visualiser une coupe ?.
+Piste future : rajouter des germes aléatoires dans la matrice ? Calculer le taux de remplissage de la matrice ? Porosité ? Rajouter des cristaux initiaux dans la matrice pour avoir plusieurs précipitations ? Fusionner la découpe 2D avec la dernière version pour visualiser une coupe ?
